@@ -1,0 +1,14 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Papanauta · demo de integración</title>
+<body style="margin:0;font-family:system-ui;background:#0b1410;color:#e8f1ea;padding:24px">
+<h1>Demo de integración</h1><p>Simula la web principal. Cambia de sección: las preguntas sugeridas cambian y el historial se conserva.</p>
+<p id="nav"></p><p>Datos NASA de demostración: <button id="demo">Enviar datos NASA de demo</button> <button id="clear">Quitar</button></p>
+<script src="papanauta-widget.js"></script>
+<script>
+const p = Papanauta.mount({ apiUrl: '/api/papanauta', language: 'es', currentSection: 'inicio' });
+['inicio','mapa','cultivos','aprender'].forEach(s => { const b = document.createElement('button'); b.textContent = s; b.onclick = () => p.setContext({ currentSection: s }); nav.appendChild(b); });
+// DATOS DE DEMOSTRACIÓN (no reales): solo para probar el flujo "con datos". La web real envía los datos del motor Groundy.
+demo.onclick = () => p.setContext({ nasaData: { demo: true, source: 'NASA POWER', period: 'demo', variables: { tmean_c: 12.0, rain_mm_yr: 900 } } });
+clear.onclick = () => p.setContext({ nasaData: null });
+addEventListener('papanauta:evidence', e => console.log('Abrir Saber más con:', e.detail));
+</script></body></html>
