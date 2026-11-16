@@ -1,0 +1,3 @@
+{ "name": "papanauta-module", "version": "0.1.0", "private": true, "type": "commonjs",
+  "engines": { "node": ">=18" },
+  "scripts": { "start": "node server/index.js", "check-api": "node scripts/check-api.js", "load-sim": "node scripts/load-sim.js", "test": "node --test test/basic.test.js test/data.test.js test/scale.test.js" } }
